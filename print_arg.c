@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 17:12:29 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/05 17:12:31 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/02/05 20:45:37 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,16 @@ void			print_arg(t_slc *slc)
 	ptr = slc->arg;
 	while (i < slc->nb_arg)
 	{
-		ft_putstr_fd(ptr->name, 2);
+		if (ptr->select == 1)
+			ft_putstr(REV);
+			ft_putstr(GREEN);
 		if (ptr->cursor == 1)
-			ft_putendl_fd(" <- ", 2);
-		else
-			ft_putchar('\n');
+			ft_putstr(ULINE);
+		ft_putstr(ptr->name);
+		ft_putstr(RESET);
+		if (ptr->cursor == 1)
+			ft_putstr(" <-");
+		ft_putchar('\n');
 		ptr = ptr->next;
 		i++;
 	}

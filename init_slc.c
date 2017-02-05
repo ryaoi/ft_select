@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_slc.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/05 20:15:17 by ryaoi             #+#    #+#             */
+/*   Updated: 2017/02/05 20:24:29 by ryaoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_select.h"
-#include <stdio.h>
 
 int         fdputc(int c)
 {
@@ -14,12 +24,12 @@ int				init_slc(t_slc *slc)
 
 	if ((tgetent(NULL, getenv("TERM")) != 1))
 		return (0);
-	if((tcgetattr(0, &slc->term) == -1))
-		return (0);
+	tcgetattr(0, &slc->term);
 	(slc)->term.c_lflag &= ~ICANON;
 	(slc)->term.c_lflag &= ~ECHO;
 	(slc)->term.c_cc[VMIN] = 1;
 	(slc)->term.c_cc[VTIME] = 0;
+	(slc)->print_arg = 0;
 	ioctl(0, TIOCGWINSZ, &win);
 	slc->term_col = win.ws_col;
 	slc->term_row = win.ws_row;
@@ -32,8 +42,6 @@ int				init_slc(t_slc *slc)
 
 int				reset_slc(t_slc *slc)
 {
-//	if (tcgetattr(0, &slc->term) == -1)
-//		return (1);
 	(slc)->term.c_lflag |= (ICANON | ECHO);
 	if (tcsetattr(0, 0, &slc->term) == -1)
 		return (1);

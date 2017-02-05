@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 18:01:17 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/05 18:32:06 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/02/05 19:34:13 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void		freeonearg(t_slc *slc)
 {
 	int		i;
-	t_arg	*ptr_prev;
-	t_arg	*ptr_next;
 	t_arg	*ptr;
 
 	slc->nb_arg--;
@@ -27,14 +25,14 @@ void		freeonearg(t_slc *slc)
 		ptr = ptr->next;
 		i++;
 	}
-	ptr_next = ptr->next;
-	ptr_prev = ptr->prev;
-	ptr_next->prev = ptr_prev;
-	ptr_prev->next = ptr_next;
-	ptr_next->cursor = 1;
-//	printf("gonna free :%s\n", ptr->name);
+	if (i == 0)
+		slc->arg = ptr->next;
+	ptr->next->prev = ptr->prev;
+	ptr->prev->next = ptr->next;
+	if (i == slc->nb_arg)
+		ptr->prev->cursor = 1;
+	else
+		ptr->next->cursor = 1;
 	free(ptr->name);
 	free(ptr);
-	if (i == 0)
-		slc->arg = ptr_next;
 }

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_arg.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/05 20:02:02 by ryaoi             #+#    #+#             */
+/*   Updated: 2017/02/05 20:20:40 by ryaoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_select.h"
 
@@ -10,7 +21,6 @@ void			add_arg(t_arg **head, char *str)
 		exit(EXIT_FAILURE);
 	new->name = ft_strdup(str);
 	new->size = ft_strlen(str);
-	printf("inside add_arg: new->name:%s and new->size:%d\n", new->name, new->size);
 	new->select = 0;
 	new->cursor = 0;
 	new->next = NULL;
