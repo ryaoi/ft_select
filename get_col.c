@@ -19,6 +19,6 @@ void		get_col(t_slc *slc)
 		ptr = ptr->next;
 	}
 	printf("finished\n");
-	slc->col = max;
+	slc->col = max + 3;
 	printf("max is:%d\n", slc->col);
 }

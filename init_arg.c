@@ -89,5 +89,6 @@ void			init_arg(t_slc *slc, char **argv)
 	slc->row = slc->nb_arg;
 	linkfrontend(&head);
 	slc->arg = head;
+	slc->arg->cursor = 1;
 	get_col(slc);
 }

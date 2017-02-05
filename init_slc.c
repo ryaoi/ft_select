@@ -39,6 +39,5 @@ int				reset_slc(t_slc *slc)
 		return (1);
 	tputs(tgetstr("ve", NULL), 1, fdputc);
 	tputs(tgetstr("te", NULL), 1, fdputc);
-//	close((*slc)->fd);
 	return (1);
 }

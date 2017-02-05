@@ -13,14 +13,6 @@
 # include <sys/ioctl.h>
 # include "libft/libft.h"
 
-# define	UP		183
-# define	DOWN	184
-# define	RIGHT	185
-# define	LEFT	186
-# define	ESC		27
-# define	SPACE	32
-# define	ENTER	10
-
 typedef struct		s_arg
 {
 	char			*name;
@@ -36,8 +28,6 @@ typedef struct		s_slc
 	struct termios	term;
 	int				fd;
 	int				nb_arg;
-	int				cursor_x;
-	int				cursor_y;
 	int				col;
 	int				row;
 	int				term_col;
@@ -53,5 +43,12 @@ void				handle_signal(t_slc *slc);
 void				clrterm(void);
 void				get_col(t_slc *slc);
 void				print_arg(t_slc *slc);
+void				cursorup(t_slc *slc);
+void				cursordown(t_slc *slc);
+void				cursorleft(t_slc *slc);
+void				cursorright(t_slc *slc);
+void				cursordel(t_slc *slc);
+void				cursoresc(t_slc *slc);
+void				freeonearg(t_slc *slc);
 
 #endif
