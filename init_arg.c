@@ -96,7 +96,7 @@ void			init_arg(t_slc *slc, char **argv)
 		i++;
 	}
 	slc->nb_arg = i - 1;
-	slc->row = slc->nb_arg;
+	slc->row = slc->nb_arg - 1;
 	linkfrontend(&head);
 	slc->arg = head;
 	slc->arg->cursor = 1;

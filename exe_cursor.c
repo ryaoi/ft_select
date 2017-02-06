@@ -97,9 +97,9 @@ void			cursorenter(t_slc *slc)
 			ft_putstr(ptr->name);
 			if (i != slc->print_arg - 1)
 				ft_putchar(' ');
+			i++;
 		}
 		ptr = ptr->next;
-		i++;
 	}
 	exit(0);
 }

@@ -24,71 +24,20 @@ int			main(int argc, char **argv, char **envp)
 		return (printf("No env detected\n"));
 	handle_signal(&slc);
 	init_arg(&slc, argv);
-	clrterm();
-	print_arg(&slc);
+	if (valid_size(&slc) == 1)
+	{
+		clrterm();
+		print_arg(&slc);
+	}
 	while (42)
 	{
 		ft_bzero(buffer, 3);
 		read(1, buffer, 3);
-		printf("\033[7mReversed\033[m Normal\n");
-		printf("buff[0]:%d buff[1]:%d buff[2]:%d\n", buffer[0], buffer[1], buffer[2]);
-		printf("win-size_x:%d and win-size_y:%d\n", slc.term_col, slc.term_row);
-		printf("arg-size_x:%d and arg-size_y:%d\n", slc.col, slc.row);
-		if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 65)
-		{
-			cursorup(&slc);
-			clrterm();
-			print_arg(&slc);
-		}
-		else if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 66)
-		{
-			cursordown(&slc);
-			clrterm();
-			print_arg(&slc);
-		}
-        else if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 68)
-		{
-			cursorleft(&slc);
-			clrterm();
-			print_arg(&slc);
-		}
-        else if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 67)
-		{	
-			cursorright(&slc);
-			clrterm();
-			print_arg(&slc);
-		}
-		else if (buffer[0] == 127 && buffer[1] == 0 && buffer[2] == 0)
-		{
-			cursordel(&slc);
-			clrterm();
-			print_arg(&slc);
-		}
-		else if (buffer[0] == 27 && buffer[1] == 0 && buffer[2] == 0)
-		{
-			cursoresc(&slc);
-			clrterm();
-			print_arg(&slc);
-		}
-		else if (buffer[0] == 10)
-		{
-			cursorenter(&slc);
-			clrterm();
-			print_arg(&slc);
-		}
-		else if (buffer[0] == 32)
-		{
-			cursorspace(&slc);
-			clrterm();
-			print_arg(&slc);
-		}
-		else if (buffer[0] == 1)
-		{
-			cursorall(&slc);
-			clrterm();
-			print_arg(&slc);
-
-		}
+//		printf("buff[0]:%d buff[1]:%d buff[2]:%d\n", buffer[0], buffer[1], buffer[2]);
+//		printf("win-size_x:%d and win-size_y:%d\n", slc.term_col, slc.term_row);
+//		printf("arg-size_x:%d and arg-size_y:%d\n", slc.col, slc.row);
+		if (valid_size(&slc) == 1)
+			task_prog(&slc, buffer);
 	}
 	return (0);
 }
