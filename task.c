@@ -24,6 +24,7 @@ void        task_prog(t_slc *slc, char *buffer)
 	clrterm();
 	print_arg(slc);
 }
+<<<<<<< HEAD
 
 void		freeonearg(t_slc *slc)
 {
@@ -49,3 +50,5 @@ void		freeonearg(t_slc *slc)
 	free(ptr->name);
 	free(ptr);
 }
+=======
+>>>>>>> f78bf9a4644298ad50a319a4765bc03bb8b7ea36

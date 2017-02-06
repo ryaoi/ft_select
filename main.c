@@ -37,6 +37,12 @@ int			main(int argc, char **argv, char **envp)
 	{
 		ft_bzero(buffer, 3);
 		read(1, buffer, 3);
+<<<<<<< HEAD
+=======
+//		printf("buff[0]:%d buff[1]:%d buff[2]:%d\n", buffer[0], buffer[1], buffer[2]);
+//		printf("win-size_x:%d and win-size_y:%d\n", slc.term_col, slc.term_row);
+//		printf("arg-size_x:%d and arg-size_y:%d\n", slc.col, slc.row);
+>>>>>>> f78bf9a4644298ad50a319a4765bc03bb8b7ea36
 		if (valid_size(&slc) == 1)
 			task_prog(&slc, buffer);
 	}
