@@ -11,7 +11,11 @@
 /* ************************************************************************** */
 
 #include "ft_select.h"
-#include <stdio.h>
+
+void		clrterm(void)
+{
+	tputs(tgetstr("cl", NULL), 1, fdputc);
+}
 
 int			main(int argc, char **argv, char **envp)
 {
@@ -21,7 +25,7 @@ int			main(int argc, char **argv, char **envp)
 	if (argc < 2)
 		return (ft_printf("Error: no argument\n"));
 	if (init_slc(&slc) == 0)
-		return (printf("No env detected\n"));
+		return (ft_printf("No env detected\n"));
 	handle_signal(&slc);
 	init_arg(&slc, argv);
 	if (valid_size(&slc) == 1)
@@ -33,9 +37,6 @@ int			main(int argc, char **argv, char **envp)
 	{
 		ft_bzero(buffer, 3);
 		read(1, buffer, 3);
-//		printf("buff[0]:%d buff[1]:%d buff[2]:%d\n", buffer[0], buffer[1], buffer[2]);
-//		printf("win-size_x:%d and win-size_y:%d\n", slc.term_col, slc.term_row);
-//		printf("arg-size_x:%d and arg-size_y:%d\n", slc.col, slc.row);
 		if (valid_size(&slc) == 1)
 			task_prog(&slc, buffer);
 	}

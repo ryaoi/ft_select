@@ -24,3 +24,28 @@ void        task_prog(t_slc *slc, char *buffer)
 	clrterm();
 	print_arg(slc);
 }
+
+void		freeonearg(t_slc *slc)
+{
+	int     i;
+	t_arg   *ptr;
+
+	slc->nb_arg--;
+	i = 0;
+	ptr = slc->arg;
+	while (ptr->cursor != 1)
+	{
+		ptr = ptr->next;
+		i++;
+	}
+	if (i == 0)
+		slc->arg = ptr->next;
+	ptr->next->prev = ptr->prev;
+	ptr->prev->next = ptr->next;
+	if (i == slc->nb_arg)
+		ptr->prev->cursor = 1;
+	else
+		ptr->next->cursor = 1;
+	free(ptr->name);
+	free(ptr);
+}

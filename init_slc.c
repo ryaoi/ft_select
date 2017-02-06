@@ -20,8 +20,6 @@ int         fdputc(int c)
 
 int				init_slc(t_slc *slc)
 {
-	struct winsize	win;
-
 	if ((tgetent(NULL, getenv("TERM")) != 1))
 		return (0);
 	tcgetattr(0, &slc->term);
@@ -30,9 +28,6 @@ int				init_slc(t_slc *slc)
 	(slc)->term.c_cc[VMIN] = 1;
 	(slc)->term.c_cc[VTIME] = 0;
 	(slc)->print_arg = 0;
-	ioctl(0, TIOCGWINSZ, &win);
-	slc->term_col = win.ws_col;
-	slc->term_row = win.ws_row;
 	if (tcsetattr(0, 0, &slc->term) == -1)
 		return (0);
 	tputs(tgetstr("ti", NULL), 1, fdputc);

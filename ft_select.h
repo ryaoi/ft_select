@@ -35,8 +35,6 @@ typedef struct		s_slc
 	int				nb_arg;
 	int				col;
 	int				row;
-	int				term_col;
-	int				term_row;
 	t_arg			*arg;
 }					t_slc;
 
