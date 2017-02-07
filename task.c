@@ -24,7 +24,6 @@ void        task_prog(t_slc *slc, char *buffer)
 	clrterm();
 	print_arg(slc);
 }
-<<<<<<< HEAD
 
 void		freeonearg(t_slc *slc)
 {
@@ -50,5 +49,23 @@ void		freeonearg(t_slc *slc)
 	free(ptr->name);
 	free(ptr);
 }
-=======
->>>>>>> f78bf9a4644298ad50a319a4765bc03bb8b7ea36
+
+void		freeallarg(t_slc *slc)
+{
+	int		i;
+	t_arg	*ptr;
+	t_arg	*ptr_next;
+
+	i = 0;
+	ptr = slc->arg;
+	while (i < slc->nb_arg - 1)
+	{
+		ptr_next = ptr->next;
+		free(ptr->name);
+		free(ptr);
+		ptr = ptr_next;
+		i++;
+	}
+	free(ptr->name);
+	free(ptr);
+}

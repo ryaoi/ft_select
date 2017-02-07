@@ -57,3 +57,23 @@ void				print_arg(t_slc *slc)
 		i++;
 	}
 }
+
+void			print_select(t_slc *slc)
+{
+	int			i;
+	t_arg		*ptr;
+
+    i = 0;
+    ptr = slc->arg;
+    while (i < slc->print_arg)
+    {
+        if (ptr->select == 1)
+        {
+            ft_putstr(ptr->name);
+            if (i != slc->print_arg - 1)
+                ft_putchar(' ');
+            i++;
+        }
+        ptr = ptr->next;
+    }
+}

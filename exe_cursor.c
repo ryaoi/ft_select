@@ -21,22 +21,7 @@ void			cursordel(t_slc *slc)
 
 void			cursoresc(t_slc *slc)
 {
-	int			i;
-	t_arg		*ptr;
-	t_arg		*ptr_next;
-
-	i = 0;
-	ptr = slc->arg;
-	while (i < slc->nb_arg - 1)
-	{
-		ptr_next = ptr->next;
-		free(ptr->name);
-		free(ptr);
-		ptr = ptr_next;
-		i++;
-	}
-	free(ptr->name);
-	free(ptr);
+	freeallarg(slc);
 	if (reset_slc(slc) == 0)
 		exit (EXIT_FAILURE);
 	exit (0);
@@ -88,18 +73,7 @@ void			cursorenter(t_slc *slc)
 		ptr = ptr->next;
 		i++;
 	}
-	i = 0;
-	ptr = slc->arg;
-	while (i < slc->print_arg)
-	{
-		if (ptr->select == 1)
-		{
-			ft_putstr(ptr->name);
-			if (i != slc->print_arg - 1)
-				ft_putchar(' ');
-			i++;
-		}
-		ptr = ptr->next;
-	}
+	print_select(slc);
+	freeallarg(slc);
 	exit(0);
 }

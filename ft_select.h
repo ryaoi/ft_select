@@ -45,6 +45,7 @@ void				init_arg(t_slc *slc, char **argv);
 void				add_arg(t_arg **head, char *str);
 void				handle_signal(t_slc *slc);
 void				task_prog(t_slc *slc, char *buffer);
+void				print_select(t_slc *slc);
 void				clrterm(void);
 void				get_col(t_slc *slc);
 void				print_arg(t_slc *slc);
@@ -58,6 +59,7 @@ void				cursorspace(t_slc *slc);
 void				cursorall(t_slc *slc);
 void				cursorenter(t_slc *slc);
 void				freeonearg(t_slc *slc);
+void				freeallarg(t_slc *slc);
 int					valid_size(t_slc *slc);
 
 #endif
