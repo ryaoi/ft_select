@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 17:43:18 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/05 20:27:25 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/02/07 18:43:04 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void			cursoresc(t_slc *slc)
 {
 	freeallarg(slc);
 	if (reset_slc(slc) == 0)
-		exit (EXIT_FAILURE);
-	exit (0);
+		exit(EXIT_FAILURE);
+	exit(0);
 }
 
 void			cursorspace(t_slc *slc)
@@ -54,7 +54,7 @@ void			cursorall(t_slc *slc)
 		ptr = ptr->next;
 		i++;
 	}
-	on = (on == 0 ? 1: 0);
+	on = (on == 0 ? 1 : 0);
 }
 
 void			cursorenter(t_slc *slc)

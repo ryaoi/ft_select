@@ -6,16 +6,16 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 20:15:17 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/05 20:24:29 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/02/07 18:26:36 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int         fdputc(int c)
+int				fdputc(int c)
 {
-    write(2, &c, 1);
-    return (1);
+	write(2, &c, 1);
+	return (1);
 }
 
 int				init_slc(t_slc *slc)

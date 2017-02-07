@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 20:02:02 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/05 20:20:40 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/02/07 18:40:47 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void			init_arg(t_slc *slc, char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		printf("i is:%d and argv is:%s\n", i, argv[i]);
 		add_arg(&head, argv[i]);
 		i++;
 	}

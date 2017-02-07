@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_select.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/07 18:21:32 by ryaoi             #+#    #+#             */
+/*   Updated: 2017/02/07 18:39:00 by ryaoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FT_SELECT_H
 # define FT_SELECT_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <termios.h>
 # include <termcap.h>
@@ -47,6 +57,7 @@ void				handle_signal(t_slc *slc);
 void				task_prog(t_slc *slc, char *buffer);
 void				print_select(t_slc *slc);
 void				clrterm(void);
+t_slc				*slctoglb(t_slc *slc);
 void				get_col(t_slc *slc);
 void				print_arg(t_slc *slc);
 void				cursorup(t_slc *slc);

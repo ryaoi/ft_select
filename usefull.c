@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   usefull.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/07 18:30:41 by ryaoi             #+#    #+#             */
+/*   Updated: 2017/02/07 18:42:40 by ryaoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_select.h"
 
@@ -26,7 +37,7 @@ int					valid_size(t_slc *slc)
 
 	ioctl(0, TIOCGWINSZ, &win);
 	clrterm();
-	if (slc->col > win.ws_col || slc->row + 2> win.ws_row)
+	if (slc->col > win.ws_col || slc->row + 2 > win.ws_row)
 	{
 		ft_printf("Error term\nsize\n");
 		return (0);
@@ -58,22 +69,27 @@ void				print_arg(t_slc *slc)
 	}
 }
 
-void			print_select(t_slc *slc)
+void				clrterm(void)
 {
-	int			i;
-	t_arg		*ptr;
+	tputs(tgetstr("cl", NULL), 1, fdputc);
+}
 
-    i = 0;
-    ptr = slc->arg;
-    while (i < slc->print_arg)
-    {
-        if (ptr->select == 1)
-        {
-            ft_putstr(ptr->name);
-            if (i != slc->print_arg - 1)
-                ft_putchar(' ');
-            i++;
-        }
-        ptr = ptr->next;
-    }
+void				print_select(t_slc *slc)
+{
+	int				i;
+	t_arg			*ptr;
+
+	i = 0;
+	ptr = slc->arg;
+	while (i < slc->print_arg)
+	{
+		if (ptr->select == 1)
+		{
+			ft_putstr(ptr->name);
+			if (i != slc->print_arg - 1)
+				ft_putchar(' ');
+			i++;
+		}
+		ptr = ptr->next;
+	}
 }
