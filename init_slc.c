@@ -28,6 +28,7 @@ int				init_slc(t_slc *slc)
 	(slc)->term.c_cc[VMIN] = 1;
 	(slc)->term.c_cc[VTIME] = 0;
 	(slc)->print_arg = 0;
+	(slc)->defo_color = GREEN;
 	if (tcsetattr(0, 0, &slc->term) == -1)
 		return (0);
 	tputs(tgetstr("ti", NULL), 1, fdputc);

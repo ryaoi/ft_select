@@ -14,7 +14,7 @@
 
 void ft_putspace(int len, int max)
 {
-	while (len < max + 1)
+	while (len < max)
 	{
 		ft_putchar_fd(' ', isatty(1));
 		len++;

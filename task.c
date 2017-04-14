@@ -12,15 +12,29 @@
 
 #include "ft_select.h"
 
+static void 	more_option(t_slc *slc, char *buffer)
+{
+	if (buffer[0] == -62 && buffer[1] == -82 && buffer[2] == 0)
+		slc->defo_color = RED;
+	else if (buffer[0] == -62 && buffer[1] == -87 && buffer[2] == 0)
+		slc->defo_color = GREEN;
+	else if (buffer[0] == -30 && buffer[1] == -120 && buffer[2] == -85)
+		slc->defo_color = BLUE;
+	else if (buffer[0] == -30 && buffer[1] == -120 && buffer[2] == -126)
+		slc->defo_color = RESET;
+}
 void			task_prog(t_slc *slc, char *buffer)
 {
+//	ft_printf("%d %d %d\n", buffer[0], buffer[1], buffer[2]);
+	//sleep(3);
 	if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 65)
 		cursorup(slc);
 	else if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 66)
 		cursordown(slc);
 	else if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 68)
 		cursorleft(slc);
-	else if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 67)
+	else if ((buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 67)
+			|| (buffer[0] == '\t' && buffer[1] == 0 && buffer[2] == 0))
 		cursorright(slc);
 	else if (buffer[0] == 127 && buffer[1] == 0 && buffer[2] == 0)
 		cursordel(slc);
@@ -32,6 +46,7 @@ void			task_prog(t_slc *slc, char *buffer)
 		cursorspace(slc);
 	else if (buffer[0] == 1)
 		cursorall(slc);
+	more_option(slc, buffer);
 	clrterm();
 	print_arg(slc);
 }

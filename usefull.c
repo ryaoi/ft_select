@@ -12,33 +12,21 @@
 
 #include "ft_select.h"
 
-void				get_col(t_slc *slc)
-{
-	int				i;
-	int				max;
-	t_arg			*ptr;
-
-	i = 0;
-	ptr = slc->arg;
-	max = slc->arg->size;
-	while (i < slc->nb_arg && ptr)
-	{
-		if (max < ptr->size)
-			max = ptr->size;
-		i++;
-		ptr = ptr->next;
-	}
-	slc->col = max + 4;
-}
-
 int					valid_size(t_slc *slc)
 {
 	struct winsize	win;
+	int				max;
 
 	clrterm();
 	ioctl(0, TIOCGWINSZ, &win);
 	slc->row = win.ws_col;
 	slc->col = win.ws_row;
+	max = maxlen(slc) + 2;
+	if (max > win.ws_col)
+	{
+		ft_putstr_fd("Window size too small...", isatty(1));
+		return (0);
+	}
 	return (1);
 }
 
@@ -47,31 +35,22 @@ void				print_arg(t_slc *slc)
 	int				i;
 	int				j;
 	int				max;
+	int				lim_col;
 	t_arg			*ptr;
 
 	i = 0;
 	ptr = slc->arg;
 	max = maxlen(slc) + 2;
+	if (slc->row / max >= 1)
+		lim_col = slc->nb_arg / (slc->row / max);
 	j = 0;
 	while (i < slc->nb_arg)
 	{
-		ft_putstr_fd(GREEN, isatty(1));
-		if (ptr->select == 1)
-			ft_putstr_fd(REV, isatty(1));
-		if (ptr->cursor == 1)
-			ft_putstr_fd(ULINE, isatty(1));
-		j += max;
-		if (j >= slc->row)
-		{
-			ft_putchar_fd('\n', isatty(1));
-			j = max;
-		}
-		ft_putstr_fd(ptr->name, isatty(1));
-		ft_putstr_fd(RESET, isatty(1));
-		ft_putspace(ft_strlen(ptr->name), max);
+		print_list(slc, &j, max, ptr);
 		ptr = ptr->next;
 		i++;
 	}
+	print_page(slc, lim_col);
 }
 
 void				clrterm(void)

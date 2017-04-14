@@ -31,7 +31,6 @@ int			main(int argc, char **argv)
 	while (42)
 	{
 		ft_bzero(buffer, 3);
-		//handle_signal(&slc);
 		read(isatty(1), buffer, 3);
 		if (valid_size(&slc) == 1)
 			task_prog(&slc, buffer);

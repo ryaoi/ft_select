@@ -24,6 +24,8 @@
 # include "libft/libft.h"
 
 # define GREEN   "\x1b[32m"
+# define RED	 "\x1b[31m"
+# define BLUE	 "\x1b[34m"
 # define RESET   "\x1b[0m"
 # define REV	 "\033[7m"
 # define ULINE	 "\033[4m"
@@ -43,6 +45,7 @@ typedef struct		s_slc
 	struct termios	term;
 	int				print_arg;
 	int				nb_arg;
+	char			*defo_color;
 	int				col;
 	int				row;
 	t_arg			*arg;
@@ -74,5 +77,7 @@ void				freeallarg(t_slc *slc);
 int					valid_size(t_slc *slc);
 int         		maxlen(t_slc *slc);
 void                ft_putspace(int len, int max);
+void 				print_list(t_slc *slc, int *j, int max, t_arg *ptr);
+void                print_page(t_slc *slc, int lim);
 
 #endif

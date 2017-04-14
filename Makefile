@@ -26,7 +26,8 @@ SRC		= main.c \
 		  usefull.c \
 		  ft_str.c \
 		  ft_cursorup.c \
-		  ft_cursordown.c
+		  ft_cursordown.c \
+		  print_list.c
 
 OBJ		= $(SRC:.c=.o)
 
