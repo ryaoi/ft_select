@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 17:37:12 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/07 18:42:58 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/14 00:08:28 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int			main(int argc, char **argv)
 	while (42)
 	{
 		ft_bzero(buffer, 3);
-		read(1, buffer, 3);
+		//handle_signal(&slc);
+		read(isatty(1), buffer, 3);
 		if (valid_size(&slc) == 1)
 			task_prog(&slc, buffer);
 	}

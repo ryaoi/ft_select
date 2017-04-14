@@ -6,7 +6,7 @@
 #    By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/30 16:48:59 by ryaoi             #+#    #+#              #
-#    Updated: 2017/01/30 16:58:33 by ryaoi            ###   ########.fr        #
+#    Updated: 2017/04/13 01:30:33 by ryaoi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,10 @@ SRC		= main.c \
 		  init_slc.c \
 		  move_cursor.c \
 		  task.c \
-		  usefull.c
+		  usefull.c \
+		  ft_str.c \
+		  ft_cursorup.c \
+		  ft_cursordown.c
 
 OBJ		= $(SRC:.c=.o)
 
@@ -36,8 +39,13 @@ CFLAGS	= -Wall -Wextra -Werror
 
 all: $(NAME)
 
+.SILENT:
+
 %.o:%.c
 	$(CC) $(CFLAGS) -I./$(INCLUDE) -o $@ -c $<
+	printf "\033[1m"
+	printf [$@]
+	printf "\033[0m"
 
 $(LIBFT):
 	make -C $(DIR_LIB)

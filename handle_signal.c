@@ -28,8 +28,8 @@ static void		ft_sigcont(int sig)
 	g_slc->term.c_cc[VMIN] = 1;
 	g_slc->term.c_cc[VTIME] = 0;
 	tcsetattr(0, 0, &(g_slc->term));
-	tputs(tgetstr("ti", NULL), 1, fdputc);
-	tputs(tgetstr("vi", NULL), 1, fdputc);
+	tputs(tgetstr("ti", NULL), 0, fdputc);
+	tputs(tgetstr("vi", NULL), 0, fdputc);
 	if (valid_size(g_slc) == 1)
 		print_arg(g_slc);
 }
@@ -40,13 +40,18 @@ static void		ft_sigstop(int sig)
 	g_slc->term.c_lflag |= (ICANON | ECHO);
 	clrterm();
 	tcsetattr(0, 0, &(g_slc->term));
-	tputs(tgetstr("te", NULL), 1, fdputc);
-	tputs(tgetstr("ve", NULL), 1, fdputc);
+	tputs(tgetstr("te", NULL), 0, fdputc);
+	tputs(tgetstr("ve", NULL), 0, fdputc);
 }
 
 static void		ft_sigwinch(int sig)
 {
 	(void)sig;
+	struct winsize	win;
+
+	ioctl(0, TIOCGWINSZ, &win);
+	g_slc->row = win.ws_col;
+	g_slc->col = win.ws_row;
 	if (valid_size(g_slc) == 1)
 		print_arg(g_slc);
 }

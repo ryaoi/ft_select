@@ -35,35 +35,40 @@ int					valid_size(t_slc *slc)
 {
 	struct winsize	win;
 
-	ioctl(0, TIOCGWINSZ, &win);
 	clrterm();
-	if (slc->col > win.ws_col || slc->row + 2 > win.ws_row)
-	{
-		ft_printf("Error term\nsize\n");
-		return (0);
-	}
+	ioctl(0, TIOCGWINSZ, &win);
+	slc->row = win.ws_col;
+	slc->col = win.ws_row;
 	return (1);
 }
 
 void				print_arg(t_slc *slc)
 {
 	int				i;
+	int				j;
+	int				max;
 	t_arg			*ptr;
 
 	i = 0;
 	ptr = slc->arg;
+	max = maxlen(slc) + 2;
+	j = 0;
 	while (i < slc->nb_arg)
 	{
-		ft_putstr(GREEN);
+		ft_putstr_fd(GREEN, isatty(1));
 		if (ptr->select == 1)
-			ft_putstr(REV);
+			ft_putstr_fd(REV, isatty(1));
 		if (ptr->cursor == 1)
-			ft_putstr(ULINE);
-		ft_putstr(ptr->name);
-		ft_putstr(RESET);
-		if (ptr->cursor == 1)
-			ft_putstr(" <-");
-		ft_putchar('\n');
+			ft_putstr_fd(ULINE, isatty(1));
+		j += max;
+		if (j >= slc->row)
+		{
+			ft_putchar_fd('\n', isatty(1));
+			j = max;
+		}
+		ft_putstr_fd(ptr->name, isatty(1));
+		ft_putstr_fd(RESET, isatty(1));
+		ft_putspace(ft_strlen(ptr->name), max);
 		ptr = ptr->next;
 		i++;
 	}
@@ -71,7 +76,7 @@ void				print_arg(t_slc *slc)
 
 void				clrterm(void)
 {
-	tputs(tgetstr("cl", NULL), 1, fdputc);
+	tputs(tgetstr("cl", NULL), 0, fdputc);
 }
 
 void				print_select(t_slc *slc)
@@ -85,9 +90,9 @@ void				print_select(t_slc *slc)
 	{
 		if (ptr->select == 1)
 		{
-			ft_putstr(ptr->name);
+			ft_putstr_fd(ptr->name, 1);
 			if (i != slc->print_arg - 1)
-				ft_putchar(' ');
+				ft_putchar_fd(' ', 1);
 			i++;
 		}
 		ptr = ptr->next;

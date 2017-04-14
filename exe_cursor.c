@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 17:43:18 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/07 18:43:04 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/14 00:08:51 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void			cursorspace(t_slc *slc)
 	while (ptr->cursor != 1)
 		ptr = ptr->next;
 	ptr->select = (ptr->select == 0 ? 1 : 0);
+	ptr->cursor = 0;
+	ptr->next->cursor = 1;
 }
 
 void			cursorall(t_slc *slc)

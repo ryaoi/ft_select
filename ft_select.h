@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:21:32 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/07 18:39:00 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/03/22 20:26:18 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,7 @@ void				cursorenter(t_slc *slc);
 void				freeonearg(t_slc *slc);
 void				freeallarg(t_slc *slc);
 int					valid_size(t_slc *slc);
+int         		maxlen(t_slc *slc);
+void                ft_putspace(int len, int max);
 
 #endif

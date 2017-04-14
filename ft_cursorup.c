@@ -1,44 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_cursor.c                                      :+:      :+:    :+:   */
+/*   ft_cursorup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/05 17:12:49 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/24 01:54:42 by ryaoi            ###   ########.fr       */
+/*   Created: 2017/04/14 03:05:11 by ryaoi             #+#    #+#             */
+/*   Updated: 2017/04/14 03:05:12 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void ft_putspace(int len, int max)
+static void curs_move(t_arg *ptr, int i, int j, int left)
 {
-	while (len < max + 1)
+    if (j - i < 0 && j < left)
 	{
-		ft_putchar_fd(' ', isatty(1));
-		len++;
+		while (left > 0)
+		{
+			ptr = ptr->prev;
+			left--;
+		}
+		ptr->cursor = 1;
+		return ;
 	}
+	while (i > 0)
+	{
+		if (j == 0)
+			i += left;
+		i--;
+		ptr = ptr->prev;
+		j--;
+	}
+	ptr->cursor = 1;
 }
 
-void		cursorleft(t_slc *slc)
+void		cursorup(t_slc *slc)
 {
 	t_arg	*ptr;
+	int		i;
+	int		j;
+	int		max;
+	int		left;
 
+	i = 0;
+	max = maxlen(slc) + 2;
+	left = slc->nb_arg % (slc->row / max);
+	i = slc->row / max;
+	j = 0;
 	ptr = slc->arg;
 	while (ptr->cursor != 1)
+	{
 		ptr = ptr->next;
+		j++;
+	}
 	ptr->cursor = 0;
-	ptr->prev->cursor = 1;
-}
-
-void		cursorright(t_slc *slc)
-{
-	t_arg	*ptr;
-
-	ptr = slc->arg;
-	while (ptr->cursor != 1)
-		ptr = ptr->next;
-	ptr->cursor = 0;
-	ptr->next->cursor = 1;
+    curs_move(ptr, i, j, left);
 }
