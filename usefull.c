@@ -21,8 +21,8 @@ int					valid_size(t_slc *slc)
 	ioctl(0, TIOCGWINSZ, &win);
 	slc->row = win.ws_col;
 	slc->col = win.ws_row;
-	max = maxlen(slc) + 2;
-	if (max > win.ws_col)
+	max = maxlen(slc) + ft_digit(slc->nb_arg, 10) + 4;
+	if (max > win.ws_col || win.ws_row < 12)
 	{
 		ft_putstr_fd("Window size too small...", isatty(1));
 		return (0);
@@ -32,25 +32,35 @@ int					valid_size(t_slc *slc)
 
 void				print_arg(t_slc *slc)
 {
-	int				i;
-	int				j;
 	int				max;
 	int				lim_col;
-	t_arg			*ptr;
+	int				lim_row;
+	int				all_col;
 
-	i = 0;
-	ptr = slc->arg;
-	max = maxlen(slc) + 2;
-	if (slc->row / max >= 1)
-		lim_col = slc->nb_arg / (slc->row / max);
-	j = 0;
-	while (i < slc->nb_arg)
+	max = maxlen(slc) + 3 + ft_digit(slc->nb_arg, 10);
+	lim_row = slc->row / max;
+	all_col = slc->nb_arg / lim_row;
+	if (all_col + 2 > slc->col)
 	{
-		print_list(slc, &j, max, ptr);
-		ptr = ptr->next;
-		i++;
+		lim_col = 9;
+		slc->total_page = (slc->nb_arg) / (10 * lim_row) + 1;
+		if (slc->cursor <= (10 * lim_row))
+			slc->page = 1;
+		else
+		{
+			if ((slc->cursor) % (10 * lim_row) == 0)
+				slc->page = (slc->cursor) / (10 * lim_row);
+			else
+			slc->page = ((slc->cursor) / (10 * lim_row) + 1);
+		}
+		print_onepage(slc, lim_col, lim_row, max);
+
 	}
-	print_page(slc, lim_col);
+	else
+	{
+		print_all(slc, all_col, max);
+		return ;
+	}
 }
 
 void				clrterm(void)

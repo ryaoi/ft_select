@@ -6,7 +6,7 @@
 #    By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/30 16:48:59 by ryaoi             #+#    #+#              #
-#    Updated: 2017/04/13 01:30:33 by ryaoi            ###   ########.fr        #
+#    Updated: 2017/04/16 04:37:05 by ryaoi            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,8 @@ SRC		= main.c \
 		  task.c \
 		  usefull.c \
 		  ft_str.c \
-		  ft_cursorup.c \
-		  ft_cursordown.c \
+		  ft_cursorleft.c \
+		  ft_cursorright.c \
 		  print_list.c
 
 OBJ		= $(SRC:.c=.o)
@@ -45,14 +45,19 @@ all: $(NAME)
 %.o:%.c
 	$(CC) $(CFLAGS) -I./$(INCLUDE) -o $@ -c $<
 	printf "\033[1m"
-	printf [$@]
+	printf "[$@]\n"
 	printf "\033[0m"
 
 $(LIBFT):
 	make -C $(DIR_LIB)
+	printf "[$(LIBFT)]\n"
 
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) ./libft/libft.a $(OBJ) $(INCLUDE) -ltermcap
+	printf "\033[1m"
+	printf "\033[32m"
+	printf "[$@ Compiled!]\n"
+	printf "\033[0m"
 
 clean:
 	make clean -C $(DIR_LIB)

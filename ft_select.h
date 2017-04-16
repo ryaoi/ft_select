@@ -23,12 +23,13 @@
 # include <sys/ioctl.h>
 # include "libft/libft.h"
 
+# define DEFO	 "\033[1m"
 # define GREEN   "\x1b[32m"
 # define RED	 "\x1b[31m"
 # define BLUE	 "\x1b[34m"
-# define RESET   "\x1b[0m"
-# define REV	 "\033[7m"
-# define ULINE	 "\033[4m"
+# define RESET   "\x1b[0m\033[1m"
+# define REV	 "\033[7m\033[1m"
+# define ULINE	 "\033[4m\033[1m"
 
 typedef struct		s_arg
 {
@@ -48,6 +49,11 @@ typedef struct		s_slc
 	char			*defo_color;
 	int				col;
 	int				row;
+	int				page;
+	int				jump;
+	int				cursor;
+	int				total_page;
+	int				index;
 	t_arg			*arg;
 }					t_slc;
 
@@ -77,7 +83,7 @@ void				freeallarg(t_slc *slc);
 int					valid_size(t_slc *slc);
 int         		maxlen(t_slc *slc);
 void                ft_putspace(int len, int max);
-void 				print_list(t_slc *slc, int *j, int max, t_arg *ptr);
-void                print_page(t_slc *slc, int lim);
+void                print_all(t_slc *slc, int lim_col, int max);
+void                print_onepage(t_slc *slc, int lim_col, int lim_row, int max);
 
 #endif

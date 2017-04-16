@@ -29,6 +29,11 @@ int				init_slc(t_slc *slc)
 	(slc)->term.c_cc[VTIME] = 0;
 	(slc)->print_arg = 0;
 	(slc)->defo_color = GREEN;
+	slc->total_page = 0;
+	slc->page = 1;
+	slc->index = 1;
+	slc->cursor = 1;
+	slc->jump = 0;
 	if (tcsetattr(0, 0, &slc->term) == -1)
 		return (0);
 	tputs(tgetstr("ti", NULL), 1, fdputc);

@@ -1,50 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_cursor.c                                      :+:      :+:    :+:   */
+/*   ft_cursorright.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/05 17:12:49 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/24 01:54:42 by ryaoi            ###   ########.fr       */
+/*   Created: 2017/04/14 03:05:11 by ryaoi             #+#    #+#             */
+/*   Updated: 2017/04/14 03:05:12 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void ft_putspace(int len, int max)
+void		cursorright(t_slc *slc)
 {
-	while (len < max - 1)
+    (void)slc;
+    /*
+	t_arg	*ptr;
+	int		i;
+	int		j;
+
+	j = 1;
+	ptr = slc->arg;
+	while (ptr->cursor != 1)
 	{
-		ft_putchar_fd(' ', isatty(1));
-		len++;
+		ptr = ptr->next;
+		j++;
 	}
-}
-
-void		cursorup(t_slc *slc)
-{
-	t_arg	*ptr;
-
-	ptr = slc->arg;
-	while (ptr->cursor != 1)
-		ptr = ptr->next;
-	ptr->cursor = 0;
-	ptr->prev->cursor = 1;
-	slc->cursor--;
-	if (slc->cursor == 0)
-		slc->cursor = slc->nb_arg;
-}
-
-void		cursordown(t_slc *slc)
-{
-	t_arg	*ptr;
-
-	ptr = slc->arg;
-	while (ptr->cursor != 1)
-		ptr = ptr->next;
-	ptr->cursor = 0;
-	ptr->next->cursor = 1;
-	slc->cursor++;
-	if (slc->cursor == slc->nb_arg + 1)
-		slc->cursor = 1;
+    i = 0;
+    if (j + 10 <= slc->nb_arg)
+    {
+        ptr->cursor = 0;
+        while (i < 10)
+        {
+            ptr = ptr->next;
+            i++;
+        }
+        ptr->cursor = 1;
+    }*/
 }

@@ -36,6 +36,9 @@ void			cursorspace(t_slc *slc)
 		ptr = ptr->next;
 	ptr->select = (ptr->select == 0 ? 1 : 0);
 	ptr->cursor = 0;
+	(slc->cursor)++;
+	if (slc->cursor == slc->nb_arg + 1)
+		slc->cursor = 1;
 	ptr->next->cursor = 1;
 }
 

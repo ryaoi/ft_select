@@ -21,7 +21,7 @@ static void 	more_option(t_slc *slc, char *buffer)
 	else if (buffer[0] == -30 && buffer[1] == -120 && buffer[2] == -85)
 		slc->defo_color = BLUE;
 	else if (buffer[0] == -30 && buffer[1] == -120 && buffer[2] == -126)
-		slc->defo_color = RESET;
+		slc->defo_color = "default";
 }
 void			task_prog(t_slc *slc, char *buffer)
 {
@@ -29,12 +29,12 @@ void			task_prog(t_slc *slc, char *buffer)
 	//sleep(3);
 	if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 65)
 		cursorup(slc);
-	else if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 66)
+	else if ((buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 66)
+			|| (buffer[0] == '\t' && buffer[1] == 0 && buffer[2] == 0))
 		cursordown(slc);
 	else if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 68)
 		cursorleft(slc);
-	else if ((buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 67)
-			|| (buffer[0] == '\t' && buffer[1] == 0 && buffer[2] == 0))
+	else if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 67)
 		cursorright(slc);
 	else if (buffer[0] == 127 && buffer[1] == 0 && buffer[2] == 0)
 		cursordel(slc);
@@ -69,7 +69,10 @@ void			freeonearg(t_slc *slc)
 	ptr->next->prev = ptr->prev;
 	ptr->prev->next = ptr->next;
 	if (i == slc->nb_arg)
+	{
+		(slc->cursor)--;
 		ptr->prev->cursor = 1;
+	}
 	else
 		ptr->next->cursor = 1;
 	free(ptr->name);
