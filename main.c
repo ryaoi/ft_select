@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 17:37:12 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/14 00:08:28 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/16 22:44:40 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			main(int argc, char **argv)
 	if (valid_size(&slc) == 1)
 	{
 		clrterm();
-		print_arg(&slc);
+		print_arg(&slc, 0, 0, 0);
 	}
 	while (42)
 	{

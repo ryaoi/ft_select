@@ -6,13 +6,13 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:27:29 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/14 00:08:39 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/16 22:48:03 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void 	more_option(t_slc *slc, char *buffer)
+static void		more_option(t_slc *slc, char *buffer)
 {
 	if (buffer[0] == -62 && buffer[1] == -82 && buffer[2] == 0)
 		slc->defo_color = RED;
@@ -21,12 +21,11 @@ static void 	more_option(t_slc *slc, char *buffer)
 	else if (buffer[0] == -30 && buffer[1] == -120 && buffer[2] == -85)
 		slc->defo_color = BLUE;
 	else if (buffer[0] == -30 && buffer[1] == -120 && buffer[2] == -126)
-		slc->defo_color = "default";
+		slc->defo_color = DEFAULT;
 }
+
 void			task_prog(t_slc *slc, char *buffer)
 {
-//	ft_printf("%d %d %d\n", buffer[0], buffer[1], buffer[2]);
-	//sleep(3);
 	if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 65)
 		cursorup(slc);
 	else if ((buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 66)
@@ -48,7 +47,7 @@ void			task_prog(t_slc *slc, char *buffer)
 		cursorall(slc);
 	more_option(slc, buffer);
 	clrterm();
-	print_arg(slc);
+	print_arg(slc, 0, 0, 0);
 }
 
 void			freeonearg(t_slc *slc)

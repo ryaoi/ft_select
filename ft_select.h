@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:21:32 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/03/22 20:26:18 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/17 00:52:40 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,17 @@
 # include <term.h>
 # include <signal.h>
 # include <sys/ioctl.h>
+# include <sys/stat.h>
 # include "libft/libft.h"
 
+# define DEFAULT "default"
 # define DEFO	 "\033[1m"
+# define YELLOW  "\033[33m"
 # define GREEN   "\x1b[32m"
 # define RED	 "\x1b[31m"
 # define BLUE	 "\x1b[34m"
-# define RESET   "\x1b[0m\033[1m"
+# define CYAN	 "\x1b[36m"
+# define RESET   "\x1b[0m"
 # define REV	 "\033[7m\033[1m"
 # define ULINE	 "\033[4m\033[1m"
 
@@ -68,7 +72,8 @@ void				print_select(t_slc *slc);
 void				clrterm(void);
 t_slc				*slctoglb(t_slc *slc);
 void				get_col(t_slc *slc);
-void				print_arg(t_slc *slc);
+void				print_arg(t_slc *slc, int lim_col, int lim_row,
+					int all_col);
 void				cursorup(t_slc *slc);
 void				cursordown(t_slc *slc);
 void				cursorleft(t_slc *slc);
@@ -81,9 +86,11 @@ void				cursorenter(t_slc *slc);
 void				freeonearg(t_slc *slc);
 void				freeallarg(t_slc *slc);
 int					valid_size(t_slc *slc);
-int         		maxlen(t_slc *slc);
-void                ft_putspace(int len, int max);
-void                print_all(t_slc *slc, int lim_col, int max);
-void                print_onepage(t_slc *slc, int lim_col, int lim_row, int max);
+int					maxlen(t_slc *slc);
+void				ft_putspace(int len, int max);
+void				print_all(t_slc *slc, int lim_col, int max);
+void				print_onepage(t_slc *slc, int lim_col, int lim_row,
+					int max);
+void				default_color(t_slc *slc, t_arg *ptr);
 
 #endif

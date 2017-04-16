@@ -6,13 +6,13 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 17:12:49 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/24 01:54:42 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/16 23:31:28 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void ft_putspace(int len, int max)
+void		ft_putspace(int len, int max)
 {
 	while (len < max - 1)
 	{

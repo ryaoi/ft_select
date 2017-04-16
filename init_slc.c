@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 20:15:17 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/13 23:32:34 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/17 00:46:30 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int				init_slc(t_slc *slc)
 	(slc)->term.c_cc[VMIN] = 1;
 	(slc)->term.c_cc[VTIME] = 0;
 	(slc)->print_arg = 0;
-	(slc)->defo_color = GREEN;
+	(slc)->defo_color = DEFAULT;
 	slc->total_page = 0;
 	slc->page = 1;
 	slc->index = 1;

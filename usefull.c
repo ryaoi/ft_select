@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:30:41 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/07 18:42:40 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/16 23:04:44 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,9 @@ int					valid_size(t_slc *slc)
 	return (1);
 }
 
-void				print_arg(t_slc *slc)
+void				print_arg(t_slc *slc, int lim_col, int lim_row, int all_col)
 {
 	int				max;
-	int				lim_col;
-	int				lim_row;
-	int				all_col;
 
 	max = maxlen(slc) + 3 + ft_digit(slc->nb_arg, 10);
 	lim_row = slc->row / max;
@@ -51,16 +48,12 @@ void				print_arg(t_slc *slc)
 			if ((slc->cursor) % (10 * lim_row) == 0)
 				slc->page = (slc->cursor) / (10 * lim_row);
 			else
-			slc->page = ((slc->cursor) / (10 * lim_row) + 1);
+				slc->page = ((slc->cursor) / (10 * lim_row) + 1);
 		}
 		print_onepage(slc, lim_col, lim_row, max);
-
 	}
 	else
-	{
 		print_all(slc, all_col, max);
-		return ;
-	}
 }
 
 void				clrterm(void)

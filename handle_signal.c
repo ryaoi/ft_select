@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:22:51 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/02/07 18:59:57 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/16 23:40:03 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		ft_sigcont(int sig)
 	tputs(tgetstr("ti", NULL), 0, fdputc);
 	tputs(tgetstr("vi", NULL), 0, fdputc);
 	if (valid_size(g_slc) == 1)
-		print_arg(g_slc);
+		print_arg(g_slc, 0, 0, 0);
 }
 
 static void		ft_sigstop(int sig)
@@ -46,14 +46,14 @@ static void		ft_sigstop(int sig)
 
 static void		ft_sigwinch(int sig)
 {
-	(void)sig;
 	struct winsize	win;
 
+	(void)sig;
 	ioctl(0, TIOCGWINSZ, &win);
 	g_slc->row = win.ws_col;
 	g_slc->col = win.ws_row;
 	if (valid_size(g_slc) == 1)
-		print_arg(g_slc);
+		print_arg(g_slc, 0, 0, 0);
 }
 
 void			handle_signal(t_slc *slc)
