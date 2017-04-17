@@ -21,9 +21,14 @@ static void		ft_sigint(int sig)
 	exit(0);
 }
 
+static void		ft_sigstop(int sig);
+
 static void		ft_sigcont(int sig)
 {
 	(void)sig;
+
+	signal(SIGCONT, ft_sigcont);
+	signal(SIGTSTP, ft_sigstop);
 	g_slc->term.c_lflag &= ~(ICANON | ECHO);
 	g_slc->term.c_cc[VMIN] = 1;
 	g_slc->term.c_cc[VTIME] = 0;
@@ -36,12 +41,21 @@ static void		ft_sigcont(int sig)
 
 static void		ft_sigstop(int sig)
 {
+	char		cp[2];
+
 	(void)sig;
-	g_slc->term.c_lflag |= (ICANON | ECHO);
-	clrterm();
-	tcsetattr(0, 0, &(g_slc->term));
-	tputs(tgetstr("te", NULL), 0, fdputc);
-	tputs(tgetstr("ve", NULL), 0, fdputc);
+	if (isatty(1))
+	{
+		signal(SIGCONT, ft_sigcont);
+		cp[0] = g_slc->term.c_cc[VSUSP];
+		cp[1] = 0;
+		signal(18, SIG_DFL);
+		ioctl(0, TIOCSTI, cp);
+		g_slc->term.c_lflag |= (ICANON | ECHO);
+		tcsetattr(0, 0, &(g_slc->term));
+		tputs(tgetstr("te", NULL), 0, fdputc);
+		tputs(tgetstr("ve", NULL), 0, fdputc);
+	}
 }
 
 static void		ft_sigwinch(int sig)
@@ -60,7 +74,7 @@ void			handle_signal(t_slc *slc)
 {
 	g_slc = slctoglb(slc);
 	signal(SIGCONT, ft_sigcont);
-	signal(SIGSTOP, ft_sigstop);
+	signal(SIGTSTP, ft_sigstop);
 	signal(SIGINT, ft_sigint);
 	signal(SIGWINCH, ft_sigwinch);
 }
