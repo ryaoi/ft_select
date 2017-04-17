@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:21:32 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/17 00:52:40 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/17 02:38:22 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct		s_slc
 	int				col;
 	int				row;
 	int				page;
-	int				jump;
+	char			*jump;
 	int				cursor;
 	int				total_page;
 	int				index;
@@ -92,5 +92,7 @@ void				print_all(t_slc *slc, int lim_col, int max);
 void				print_onepage(t_slc *slc, int lim_col, int lim_row,
 					int max);
 void				default_color(t_slc *slc, t_arg *ptr);
+void				index_jump(t_slc *slc);
+void				search_name(t_slc *slc);
 
 #endif

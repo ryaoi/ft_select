@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:30:41 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/16 23:04:44 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/17 03:28:10 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int					valid_size(t_slc *slc)
 	slc->row = win.ws_col;
 	slc->col = win.ws_row;
 	max = maxlen(slc) + ft_digit(slc->nb_arg, 10) + 4;
-	if (max > win.ws_col || win.ws_row < 12)
+	if ((max + 7) > win.ws_col || win.ws_row < 13)
 	{
 		ft_putstr_fd("Window size too small...", isatty(1));
 		return (0);
@@ -37,6 +37,7 @@ void				print_arg(t_slc *slc, int lim_col, int lim_row, int all_col)
 	max = maxlen(slc) + 3 + ft_digit(slc->nb_arg, 10);
 	lim_row = slc->row / max;
 	all_col = slc->nb_arg / lim_row;
+	index_jump(slc);
 	if (all_col + 2 > slc->col)
 	{
 		lim_col = 9;

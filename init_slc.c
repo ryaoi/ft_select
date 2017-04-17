@@ -33,7 +33,7 @@ int				init_slc(t_slc *slc)
 	slc->page = 1;
 	slc->index = 1;
 	slc->cursor = 1;
-	slc->jump = 0;
+	slc->jump = NULL;
 	if (tcsetattr(0, 0, &slc->term) == -1)
 		return (0);
 	tputs(tgetstr("ti", NULL), 1, fdputc);

@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 00:15:55 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/17 00:52:53 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/17 03:33:23 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,43 @@ void		default_color(t_slc *slc, t_arg *ptr)
 	}
 	else
 		ft_putstr_fd(slc->defo_color, isatty(1));
+}
+
+void		search_name(t_slc *slc)
+{
+	t_arg	*ptr;
+	t_arg	*ptr2;
+	int		counter;
+
+	if (slc->jump == NULL)
+		return ;
+	ptr = slc->arg;
+	counter = 1;
+	while (counter <= slc->nb_arg)
+	{
+		if (ft_strncmp(ptr->name, slc->jump, ft_strlen(slc->jump)) == 0)
+		{
+			slc->cursor = counter;
+			ptr2 = slc->arg;
+			while (ptr2->cursor != 1)
+				ptr2 = ptr2->next;
+			ptr2->cursor = 0;
+			ptr->cursor = 1;
+			ft_strdel(&slc->jump);
+			return ;
+		}
+		counter++;
+		ptr = ptr->next;
+	}
+	ft_strdel(&slc->jump);
+}
+
+void		index_jump(t_slc *slc)
+{
+	ft_putstr_fd("search:", isatty(1));
+	if (slc->jump != NULL)
+	{
+		ft_putstr_fd(slc->jump, isatty(1));
+	}
+	ft_putstr_fd("\n", isatty(1));
 }

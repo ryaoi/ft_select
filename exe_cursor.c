@@ -24,6 +24,8 @@ void			cursoresc(t_slc *slc)
 	freeallarg(slc);
 	if (reset_slc(slc) == 0)
 		exit(EXIT_FAILURE);
+	if (slc->jump != NULL)
+		ft_strdel(&slc->jump);
 	exit(0);
 }
 
@@ -80,5 +82,7 @@ void			cursorenter(t_slc *slc)
 	}
 	print_select(slc);
 	freeallarg(slc);
+	if (slc->jump != NULL)
+		ft_strdel(&slc->jump);
 	exit(0);
 }

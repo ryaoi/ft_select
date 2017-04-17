@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:27:29 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/16 22:48:03 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/17 02:42:38 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ static void		more_option(t_slc *slc, char *buffer)
 		slc->defo_color = BLUE;
 	else if (buffer[0] == -30 && buffer[1] == -120 && buffer[2] == -126)
 		slc->defo_color = DEFAULT;
+	else if (buffer[0] == -61 && buffer[1] == -89 && buffer[2] == 0)
+	{
+		if (slc->jump != NULL)
+			ft_strdel(&(slc->jump));
+	}
+	else if (buffer[0] == -61 && buffer[1] == -97 && buffer[2] == 0)
+		search_name(slc);
+	else if (ft_isprint(buffer[0]) && buffer[1] == 0)
+	{
+		if (slc->jump == NULL)
+			slc->jump = ft_strdup(buffer);
+		else if (slc->row > (int)ft_strlen(slc->jump) + (slc->row / 2))
+			slc->jump = ft_strjoini(slc->jump, buffer, 1);
+	}
 }
 
 void			task_prog(t_slc *slc, char *buffer)
@@ -45,7 +59,8 @@ void			task_prog(t_slc *slc, char *buffer)
 		cursorspace(slc);
 	else if (buffer[0] == 1)
 		cursorall(slc);
-	more_option(slc, buffer);
+	else
+		more_option(slc, buffer);
 	clrterm();
 	print_arg(slc, 0, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 17:37:12 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/16 22:44:40 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/17 03:40:18 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			main(int argc, char **argv)
 {
 	t_slc	slc;
-	char	buffer[3];
+	char	buffer[4];
 
 	if (argc < 2)
 		return (ft_printf("Error: no argument\n"));
@@ -30,8 +30,8 @@ int			main(int argc, char **argv)
 	}
 	while (42)
 	{
-		ft_bzero(buffer, 3);
-		read(isatty(1), buffer, 3);
+		ft_bzero(buffer, 4);
+		read(isatty(1), buffer, 4);
 		if (valid_size(&slc) == 1)
 			task_prog(&slc, buffer);
 	}
