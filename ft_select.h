@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:21:32 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/17 02:38:22 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/17 04:28:27 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ void				print_onepage(t_slc *slc, int lim_col, int lim_row,
 void				default_color(t_slc *slc, t_arg *ptr);
 void				index_jump(t_slc *slc);
 void				search_name(t_slc *slc);
+void				delete_onechar(t_slc *slc);
 
 #endif

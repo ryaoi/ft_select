@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 00:15:55 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/17 03:33:23 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/04/17 04:28:51 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,23 @@ void		default_color(t_slc *slc, t_arg *ptr)
 	}
 	else
 		ft_putstr_fd(slc->defo_color, isatty(1));
+}
+
+void		delete_onechar(t_slc *slc)
+{
+	char	*tmp;
+
+	if (slc->jump == NULL)
+		return ;
+	if (ft_strlen(slc->jump) == 1)
+	{
+		ft_strdel(&slc->jump);
+		return ;
+	}
+	tmp = ft_strsub(slc->jump, 0, ft_strlen(slc->jump) - 1);
+	ft_strdel(&slc->jump);
+	slc->jump = ft_strdup(tmp);
+	ft_strdel(&tmp);
 }
 
 void		search_name(t_slc *slc)
