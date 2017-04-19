@@ -95,5 +95,6 @@ void				default_color(t_slc *slc, t_arg *ptr);
 void				index_jump(t_slc *slc);
 void				search_name(t_slc *slc);
 void				delete_onechar(t_slc *slc);
+void				ft_sigstop(int sig);
 
 #endif

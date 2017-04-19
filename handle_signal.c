@@ -17,11 +17,10 @@ t_slc			*g_slc;
 static void		ft_sigint(int sig)
 {
 	(void)sig;
+	freeallarg(g_slc);
 	reset_slc(g_slc);
 	exit(0);
 }
-
-static void		ft_sigstop(int sig);
 
 static void		ft_sigcont(int sig)
 {
@@ -39,7 +38,7 @@ static void		ft_sigcont(int sig)
 		print_arg(g_slc, 0, 0, 0);
 }
 
-static void		ft_sigstop(int sig)
+void			ft_sigstop(int sig)
 {
 	char		cp[2];
 

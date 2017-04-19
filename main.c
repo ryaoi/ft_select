@@ -20,7 +20,7 @@ int			main(int argc, char **argv)
 	if (argc < 2)
 		return (ft_printf("Error: no argument\n"));
 	if (init_slc(&slc) == 0)
-		return (ft_printf("No env detected\n"));
+		return (ft_printf("Error: couldn't detect TERM env-variable\n"));
 	handle_signal(&slc);
 	init_arg(&slc, argv);
 	if (valid_size(&slc) == 1)
