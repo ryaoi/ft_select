@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:30:41 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/17 03:28:10 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/14 15:05:53 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void				print_arg(t_slc *slc, int lim_col, int lim_row, int all_col)
 
 void				clrterm(void)
 {
-	tputs(tgetstr("cl", NULL), 0, fdputc);
+	tputs(tgetstr("cl", NULL), 1, fdputc);
 }
 
 void				print_select(t_slc *slc)

@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:27:29 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/17 03:46:54 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/14 16:37:07 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		more_option(t_slc *slc, char *buffer)
 		slc->defo_color = DEFAULT;
 	else if (buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 51
 			&& buffer[3] == 126)
-			delete_onechar(slc);
+		delete_onechar(slc);
 	else if (buffer[0] == -61 && buffer[1] == -89 && buffer[2] == 0)
 	{
 		if (slc->jump != NULL)

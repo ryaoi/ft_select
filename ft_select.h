@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 18:21:32 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/17 04:28:27 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/15 15:25:28 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,7 @@ void				index_jump(t_slc *slc);
 void				search_name(t_slc *slc);
 void				delete_onechar(t_slc *slc);
 void				ft_sigstop(int sig);
+void				ft_sigignore(int sig);
+void				select_exec(t_slc slc, char *buffer);
 
 #endif

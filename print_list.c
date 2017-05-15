@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 04:31:18 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/17 03:32:28 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/15 13:01:32 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	print_elements(t_slc *slc, int max, t_arg *ptr, int i)
 	count = 0;
 	while (count != max * i)
 	{
-		tputs(tgetstr("nd", NULL), 0, fdputc);
+		tputs(tgetstr("nd", NULL), 1, fdputc);
 		count++;
 	}
 	default_color(slc, ptr);
@@ -30,11 +30,11 @@ static void	print_elements(t_slc *slc, int max, t_arg *ptr, int i)
 	if (ptr->cursor == 1)
 		ft_putstr_fd(ULINE, isatty(1));
 	ft_putstr_fd(tmp, isatty(1));
-	ft_putchar_fd('.', isatty(1));
+	ft_putchar_fd(':', isatty(1));
 	ft_putstr_fd(ptr->name, isatty(1));
 	ft_putstr_fd(RESET, isatty(1));
 	ft_putspace(ft_strlen(ptr->name) + ft_strlen(tmp), max);
-	tputs(tgetstr("do", NULL), 0, fdputc);
+	tputs(tgetstr("do", NULL), 1, fdputc);
 	ft_strdel(&tmp);
 	(slc->index)++;
 }
@@ -60,7 +60,7 @@ void		print_all(t_slc *slc, int all_col, int max)
 		}
 		while (j != 0)
 		{
-			tputs(tgetstr("up", NULL), 0, fdputc);
+			tputs(tgetstr("up", NULL), 1, fdputc);
 			j--;
 		}
 		i++;
@@ -90,10 +90,10 @@ static void	put_page(t_slc *slc, int lim_col)
 	char	*all_page;
 
 	i = 0;
-	tputs(tgetstr("cr", NULL), 0, fdputc);
+	tputs(tgetstr("cr", NULL), 1, fdputc);
 	while (i < lim_col + 2)
 	{
-		tputs(tgetstr("do", NULL), 0, fdputc);
+		tputs(tgetstr("do", NULL), 1, fdputc);
 		i++;
 	}
 	ft_putstr_fd(" ", isatty(1));
@@ -128,7 +128,7 @@ void		print_onepage(t_slc *slc, int lim_col, int lim_row, int max)
 		}
 		while (j != 0)
 		{
-			tputs(tgetstr("up", NULL), 0, fdputc);
+			tputs(tgetstr("up", NULL), 1, fdputc);
 			j--;
 		}
 		i++;

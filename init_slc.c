@@ -6,7 +6,7 @@
 /*   By: ryaoi <ryaoi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/05 20:15:17 by ryaoi             #+#    #+#             */
-/*   Updated: 2017/04/17 00:46:30 by ryaoi            ###   ########.fr       */
+/*   Updated: 2017/05/14 15:07:28 by ryaoi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,17 @@ int				init_slc(t_slc *slc)
 	slc->jump = NULL;
 	if (tcsetattr(0, 0, &slc->term) == -1)
 		return (0);
-	tputs(tgetstr("ti", NULL), 0, fdputc);
-	tputs(tgetstr("vi", NULL), 0, fdputc);
+	tputs(tgetstr("ti", NULL), 1, fdputc);
+	tputs(tgetstr("vi", NULL), 1, fdputc);
 	return (1);
 }
 
 int				reset_slc(t_slc *slc)
 {
-//	char		cp[2];
-
-//	cp[0] = slc->term.c_cc[VSUSP];
-//	cp[1] = 0;
-//	ioctl(0, TIOCSTI, cp);
 	(slc)->term.c_lflag |= (ICANON | ECHO);
 	if (tcsetattr(0, 0, &slc->term) == -1)
 		return (1);
-	tputs(tgetstr("ve", NULL), 0, fdputc);
-	tputs(tgetstr("te", NULL), 0, fdputc);
+	tputs(tgetstr("ve", NULL), 1, fdputc);
+	tputs(tgetstr("te", NULL), 1, fdputc);
 	return (1);
 }
